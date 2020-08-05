@@ -1,22 +1,10 @@
 import { Router } from 'express';
 
-import Tweets from '../models/tweet';
-import TweetsRepository from '../repositories/TweetsRepository';
-
+import TweetController from '../controllers/TweetController';
 const tweetsRouter = Router();
-const tweetRepository = new TweetsRepository();
 
-const tweets: Tweets[] = [];
+const tweetController = new TweetController();
 
-tweetsRouter.post('/', async (request, response) => {
-  const { hashtag } = request.body;
-  try {
-    const tweet = await tweetRepository.find({ hashtag });
-
-    return response.json(tweet);
-  } catch (error) {
-    return response.status(422).json({ error: error.message });
-  }
-});
+tweetsRouter.post('/', tweetController.find);
 
 export default tweetsRouter;

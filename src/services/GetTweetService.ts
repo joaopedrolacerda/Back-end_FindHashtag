@@ -1,6 +1,6 @@
 import Tweet from '../models/tweet';
 import Twit from 'twit';
-
+import twitterkeys from '../config/keys';
 interface tweet {
   hashtag: string;
 }
@@ -12,22 +12,20 @@ interface ITweet {
   text?: string;
 }
 
-class TweetRepository {
+class GetTweetService {
   private tweets: Tweet[];
 
   private twit = new Twit({
-    consumer_key: 'a2Vs2nsse9iGvgSsJiRBqCbxo',
-    consumer_secret: 'mfIsDZogTqAVwBiMpGGcuW9m1U7BlVaIhONa3ajvq3aWwEscjl',
-    access_token: '719616677865000960-MFhjCUJzmoOqo8jAYT2IKzrU0DXRP0W',
-    access_token_secret: 'Ao3x5Accxhix6pZWgqD6jPMYdhPxeA3LKKcQOm28Xc9v0',
+    consumer_key: twitterkeys.keys.CONSUMER_KEY,
+    consumer_secret: twitterkeys.keys.CONSUMER_SECRET,
+    access_token: twitterkeys.keys.ACCESS_TOKEN,
+    access_token_secret: twitterkeys.keys.ACCESS_TOKEN_SECRET,
   });
   constructor() {
     this.tweets = [];
   }
-  public all(): Tweet[] {
-    return this.tweets;
-  }
-  public async find({ hashtag }: tweet): Promise<ITweet> {
+
+  public async execute({ hashtag }: tweet): Promise<ITweet> {
     try {
       const tweet = await this.twit.get('search/tweets', {
         q: hashtag,
@@ -40,4 +38,4 @@ class TweetRepository {
     }
   }
 }
-export default TweetRepository;
+export default GetTweetService;
