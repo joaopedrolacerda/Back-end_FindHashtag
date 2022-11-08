@@ -27,7 +27,7 @@ você pode fazer o Build tanto em versão de desenvolvimento quanto em versão d
 
 - As chaves podem ser encontradas no seguinte site: https://developer.twitter.com/en
 
-**Para que você possa utilizar essa api, é muito necessário que você adicione suas chaves de api do twitter**
+**Para que você possa utilizar essa api, é indispensável que você adicione suas chaves de api do twitter**
 
 - As chaves de api são variaveis de ambiente, que você poderá encontrar dentro de `./src/config/keys`
 
